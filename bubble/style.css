@@ -1,0 +1,139 @@
+
+
+#bubble-container {
+  position: relative;
+  height: 100vh
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #6ab04c;
+  opacity: 0.7;
+  z-index: -1;
+  animation-name: float;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.bubble:hover {
+  opacity: 1;
+  transform: scale(1.5);
+  box-shadow: 0 0 30px #6ab04c;
+  z-index: 1;
+  animation-name: none;
+}
+
+.bubble:nth-child(1) {
+  top: 20%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.bubble:nth-child(2) {
+  top: 60%;
+  left: 40%;
+  animation-delay: 0.5s;
+}
+
+.bubble:nth-child(3) {
+  top: 30%;
+  left: 60%;
+  animation-delay: 1s;
+}
+
+.bubble:nth-child(4) {
+  top: 70%;
+  left: 80%;
+  animation-delay: 1.5s;
+}
+
+.bubble:nth-child(5) {
+  top: 50%;
+  left: 20%;
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  from {
+    transform: translate(0, 0);
+  }
+  65% {
+    transform: translate(0, -20px);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+.container {
+  height: 100%;
+  perspective: 2000px;
+}
+
+.subcontainer {
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate 30s linear infinite;
+}
+
+.circle {
+  --blur-value: 0px;
+  --z-position: 0px;
+  --hue: 0;
+  width: 45px;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  position: absolute;
+  background-color: transparent;
+  background-image: radial-gradient(
+    circle at 65% 15%,
+    white 1px,
+    hsl(var(--hue), 70%, 65%) 3%,
+    hsl(var(--hue), 70%, 35%) 60%,
+    hsl(var(--hue), 70%, 65%) 100%
+  );
+  transform: translateZ(var(--z-position)) rotateY(0deg);
+  animation: rotateY 30s linear infinite;
+  filter: blur(var(--blur-value));
+  cursor: pointer;
+}
+
+.circle:hover {
+  background-color: hsl(var(--hue), 70%, 65%);
+}
+
+@keyframes rotateY {
+  from {
+    transform: translateZ(var(--z-position)) rotateY(0deg);
+  }
+
+  to {
+    transform: translateZ(var(--z-position)) rotateY(-360deg);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
